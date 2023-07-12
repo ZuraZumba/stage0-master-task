@@ -122,30 +122,30 @@ public class ArrayTasks {
      */
     public int[][] sortRaggedArray(int[][] arr) {
             // Sort one-dimensional arrays based on their length in ascending order
-            for (int i = 0; i < arr.length - 1; i++) {
-                for (int j = i + 1; j < arr.length; j++) {
-                    if (arr[i].length > arr[j].length) {
-                        int[] temp = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = temp;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - 1 - i; j++) {
+                if (arr[j].length > arr[j + 1].length) {
+                    int[] temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+
+        // Sort the numbers within each one-dimensional array in ascending order
+        for (int[] subArray : arr) {
+            for (int i = 0; i < subArray.length - 1; i++) {
+                for (int j = 0; j < subArray.length - 1 - i; j++) {
+                    if (subArray[j] > subArray[j + 1]) {
+                        int temp = subArray[j];
+                        subArray[j] = subArray[j + 1];
+                        subArray[j + 1] = temp;
                     }
                 }
             }
+        }
 
-            // Sort numbers within each one-dimensional array in ascending order
-            for (int[] row : arr) {
-                for (int i = 0; i < row.length - 1; i++) {
-                    for (int j = i + 1; j < row.length; j++) {
-                        if (row[i] > row[j]) {
-                            int temp = row[i];
-                            row[i] = row[j];
-                            row[j] = temp;
-                        }
-                    }
-                }
-            }
-
-            return arr;
+        return arr;
     }
 
 }
